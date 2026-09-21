@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RecycleRewards - Recycle today, reward tomorrow.">
+    <title>RecycleRewards ♻️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <div>
+            <p class="app-label">COMMUNITY RECYCLING</p>
+            <h1>RecycleRewards ♻️</h1>
+        </div>
+
+        <button class="profile-button" onclick="showSection('profile')">
+            👤
+        </button>
+    </header>
+
+    <!-- Main App -->
+    <main>
+
+        <!-- HOME -->
+        <section id="home" class="app-section active">
+
+            <div class="welcome-card">
+                <p>Welcome back!</p>
+                <h2>Let's make a difference today 🌍</h2>
+                <p>Recycle today. Reward tomorrow.</p>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-icon">⭐</span>
+                    <h3 id="points">0</h3>
+                    <p>Points</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">♻️</span>
+                    <h3 id="items">0</h3>
+                    <p>Items Recycled</p>
+                </div>
+
+            </div>
+
+            <button class="primary-button" onclick="showSection('log')">
+                ♻️ Log Recycling
+            </button>
+
+            <div class="progress-card">
+                <div class="progress-heading">
+                    <h3>Next Reward 🎁</h3>
+                    <span id="progressText">0 / 100 points</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="progressFill"></div>
+                </div>
+
+                <p>Earn 100 points to unlock your first reward.</p>
+            </div>
+
+            <div class="quick-actions">
+                <button onclick="showSection('locations')">
+                    📍
+                    <span>Collection Points</span>
+                </button>
+
+                <button onclick="showSection('rewards')">
+                    🎁
+                    <span>Rewards</span>
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- LOG RECYCLING -->
+        <section id="log" class="app-section">
+
+            <div class="section-heading">
+                <button class="back-button" onclick="showSection('home')">←</button>
+                <div>
+                    <p class="app-label">TRACK YOUR IMPACT</p>
+                    <h2>Log Recycling</h2>
+                </div>
+            </div>
+
+            <div class="form-card">
+
+                <label for="material">What did you recycle?</label>
+
+                <select id="material">
+                    <option value="Plastic Bottles">Plastic Bottles</option>
+                    <option value="Cans">Cans</option>
+                    <option value="Cardboard">Cardboard</option>
+                    <option value="Paper">Paper</option>
+                    <option value="Glass">Glass</option>
+                </select>
+
+                <label for="quantity">How many items?</label>
+
+                <input
+                    type="number"
+                    id="quantity"
+                    min="1"
+                    placeholder="Enter quantity"
+                >
+
+                <button class="primary-button" onclick="addRecycling()">
+                    ➕ Add Recycling
+                </button>
+
+                <p id="logMessage" class="success-message"></p>
+
+            </div>
+
+            <div class="info-card">
+                <h3>How points work ⭐</h3>
+                <p>
+                    Every recycled item earns you 1 point.
+                    Keep recycling to unlock rewards!
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- REWARDS -->
+        <section id="rewards" class="app-section">
+
+            <div class="section-heading">
+                <button class="back-button" onclick="showSection('home')">←</button>
+                <div>
+                    <p class="app-label">KEEP GOING</p>
+                    <h2>Rewards 🎁</h2>
+                </div>
+            </div>
+
+            <div class="reward-card">
+                <div class="reward-icon">🎟️</div>
+                <div>
+                    <h3>Starter Reward</h3>
+                    <p>Unlock at 100 points</p>
+                    <span class="reward-status" id="reward100">
+                        🔒 Locked
+                    </span>
+                </div>
+            </div>
+
+            <div class="reward-card">
+                <div class="reward-icon">🌱</div>
+                <div>
+                    <h3>Eco Champion</h3>
+                    <p>Unlock at 250 points</p>
+                    <span class="reward-status" id="reward250">
+                        🔒 Locked
+                    </span>
+                </div>
+            </div>
+
+            <div class="reward-card">
+                <div class="reward-icon">🏆</div>
+                <div>
+                    <h3>Recycling Hero</h3>
+                    <p>Unlock at 500 points</p>
+                    <span class="reward-status" id="reward500">
+                        🔒 Locked
+                    </span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- COLLECTION POINTS -->
+        <section id="locations" class="app-section">
+
+            <div class="section-heading">
+                <button class="back-button" onclick="showSection('home')">←</button>
+                <div>
+                    <p class="app-label">FIND A DROP-OFF</p>
+                    <h2>Collection Points 📍</h2>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <h3>♻️ Community Recycling Centre</h3>
+                <p>📍 Johannesburg Community Area</p>
+                <p>Accepts: Plastic, cans, paper and cardboard</p>
+                <button onclick="showLocationMessage()">
+                    View Details
+                </button>
+            </div>
+
+            <div class="location-card">
+                <h3>🌱 Eco Drop-Off Point</h3>
+                <p>📍 Local Community Centre</p>
+                <p>Accepts: Plastic bottles, cans and glass</p>
+                <button onclick="showLocationMessage()">
+                    View Details
+                </button>
+            </div>
+
+            <p id="locationMessage" class="success-message"></p>
+
+        </section>
+
+
+        <!-- LEADERBOARD -->
+        <section id="leaderboard" class="app-section">
+
+            <div class="section-heading">
+                <button class="back-button" onclick="showSection('home')">←</button>
+                <div>
+                    <p class="app-label">COMMUNITY IMPACT</p>
+                    <h2>Leaderboard 🏆</h2>
+                </div>
+            </div>
+
+            <div class="leaderboard-card">
+                <div class="leader">
+                    <span>🥇</span>
+                    <strong>Thabo</strong>
+                    <span>850 pts</span>
+                </div>
+
+                <div class="leader">
+                    <span>🥈</span>
+                    <strong>Lerato</strong>
+                    <span>720 pts</span>
+                </div>
+
+                <div class="leader">
+                    <span>🥉</span>
+                    <strong>Lindiwe</strong>
+                    <span>650 pts</span>
+                </div>
+
+                <div class="leader">
+                    <span>♻️</span>
+                    <strong>You</strong>
+                    <span id="leaderboardPoints">0 pts</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- PROFILE -->
+        <section id="profile" class="app-section">
+
+            <div class="section-heading">
+                <button class="back-button" onclick="showSection('home')">←</button>
+                <div>
+                    <p class="app-label">YOUR ACCOUNT</p>
+                    <h2>Profile 👤</h2>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-avatar">♻️</div>
+                <h2>Recycle Champion</h2>
+                <p>Keep making an impact!</p>
+
+                <div class="profile-stats">
+                    <div>
+                        <strong id="profilePoints">0</strong>
+                        <span>Points</span>
+                    </div>
+
+                    <div>
+                        <strong id="profileItems">0</strong>
+                        <span>Items</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="secondary-button" onclick="resetApp()">
+                🔄 Reset Demo
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+
+        <button onclick="showSection('home')" class="nav-button active-nav">
+            <span>🏠</span>
+            <small>Home</small>
+        </button>
+
+        <button onclick="showSection('log')" class="nav-button">
+            <span>♻️</span>
+            <small>Recycle</small>
+        </button>
+
+        <button onclick="showSection('rewards')" class="nav-button">
+            <span>🎁</span>
+            <small>Rewards</small>
+        </button>
+
+        <button onclick="showSection('leaderboard')" class="nav-button">
+            <span>🏆</span>
+            <small>Community</small>
+        </button>
+
+    </nav>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
